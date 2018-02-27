@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var o = {e:1,f:function(){return this.e;}};
+    console.log(o.f());//1
+    var g = o.f;
+    console.log(g());//undefined
+
+    console.log(o.f.call({e:2}));//2
+
+    console.log(o.f.bind({e:3}))//function(){return this.e;}
+
+    console.log(o.f.bind({e:4}).call({e:5}));//4
+</script>
+</html>

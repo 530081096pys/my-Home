@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.2.1.js"></script>
+</head>
+<body>
+<table>
+
+</table>
+
+    <!--输出任意行和列的任意颜色的隔行变色表格-->
+</body>
+<script>
+//    function table(row,col,rcol,ccol){
+//        var str = '<table>';
+//        var bg;
+//        for(var i=0;i<row;i++){
+//            if(i%2==0){
+//                bg = rcol;
+//            }else{
+//                bg = ccol;
+//            }
+//            str+=`<tr style="background-color:${bg}">`
+//            for(var j=0;j<col;j++){
+//                str+='<td>'+j+'</td>';
+//            }
+//            str+='</tr>';
+//        }
+//        str +='</table>';
+//        document.write(str);
+//    }
+//    table(10,10,'#ccc','#ff6700');
+
+//    function table (row,col,rowcolor,colcolor){
+//        var str = "<table>";
+//        var bg;
+//        for(var i = 0;i<row;i++){
+//            if(i%2==0){
+//                bg = rowcolor;
+//            }else{
+//                bg = colcolor;
+//            };
+//            str +=`<tr style="background-color: ${bg}">`;
+//            for(var j=0;j<col;j++){
+//                str+="<td>"+j+"</td>";
+//            }
+//            str+="</tr>"
+//        };
+//        str += "</table>"
+//        document.write(str);
+//    }
+//    table(8,10,'#ccc','#ff6700');
+
+//    function table2 (r,c,rc,cc){
+//        var str = "<table>";
+//        var bg;
+//        for (var i =0;i<r;i++){
+//            if(i%2==0){
+//                bg = rc;
+//            }else{
+//                bg = cc;
+//            };
+//            str +=`<tr style="background-color: ${bg}">`
+//            for(var j = 0;j<c;j++){
+//                str+="<td>"+j*2+"</td>"
+//            }
+//            str+="</tr>"
+//        };
+//        str+="</table>";
+//        document.write(str);
+//    }
+//    table2(5,5,'#f0f0f0',"#ff6700");
+
+//    function table3 (row,col,jc,oc){
+//        var str="<table>";
+//        var bg;
+//        for(var i =0;i<row;i++){
+//            if(i%2==0){
+//                bg = oc;
+//            }else{
+//                bg = jc;
+//            };
+//            str+=`<tr style="background-color:${bg}">`;
+//            for(var j = 0;j<col;j++){
+//                str +="<td>"+j+"</td>"
+//            }
+//            str+="</tr>"
+//        }
+//        str+="</tabel>"
+//        document.write(str);
+//    }
+//    table3(7,7,"#ccc","#ff6700")
+
+//    function table5(row,col,cc,rc){
+//        var str = "<table>";
+//        var bg;
+//        for(var i=0;i<row;i++){
+//            if(i%2==0){
+//                bg= cc;
+//            }else{
+//                bg = rc;
+//            };
+//            str+="<tr style='background-color:"+bg+" '>";
+//            for(var j =0;j<col;j++){
+//                str +="<td>"+j+"</td>";
+//            };
+//            str+="</tr>";
+//        }
+//        str+="</table>";
+//        document.write(str);
+//    }
+//    table5(10,11,"#ccc","#ff8966")
+
+//    function table5 (row,col,rc,cc){
+//        var str = "<table>";
+//        var bg;
+//        for(var i =0;i<row;i++){
+//            if(i%2 ==0){
+//                bg= rc;
+//            }else{
+//                bg = cc;
+//            };
+//            str +="<tr style='background-color: "+bg+"'>";
+//            for(var j=0;j<col;j++){
+//                str +="<td>"+j+"</td>";
+//            }
+//            str+="</tr>";
+//        }
+//        str+="</table>";
+//        document.write(str);
+//    }
+//    table5(10,8,"#ccc","#ff6700")
+
+//    function table5(row,col,cc,rc){
+//        var str = "<table>";
+//        var bg;
+//        for(var i =0;i<row;i++){
+//            if(i%2==0){
+//                bg = cc;
+//            }else{
+//                bg = rc;
+//            };
+//            str +="<tr style='background-color:"+bg+"'>";
+//            for(var j = 0;j<col;j++){
+//                str += "<td>"+j+"</td>";
+//            };
+//            str +="</tr>";
+//        };
+//        str += "</table>";
+//        document.write(str);
+//    }
+//    table5(10,8,"#ccc","#ff6700");
+
+//    function table5(row,col,rc,cc){
+//        var str = "<table>";
+//        var bg;
+//        for(var i=0;i<row;i++){
+//            if(i%2==0){
+//                bg = rc;
+//            }else{
+//                bg = cc;
+//            }
+//            str +="<tr style='background-color:"+bg+"'>";
+//            for(var j=0;j<col;j++){
+//                str+="<td>"+j+"</td>";
+//            }
+//            str+="</tr>";
+//        }
+//        str+="</table>";
+//        document.write(str);
+//    }
+//    table5(10,8,"#ccc","#ff6700");
+
+//    function table(row,col,rc,cc){
+//        var str = "<table>";
+//        var bg;
+//        for(var i =0;i<row;i++){
+//            if(i%2==0){
+//                bg = cc;
+//            }else{
+//                bg = rc;
+//            };
+//            str +="<tr style='background-color: "+bg+"'>";
+//            for(var j = 0 ;j<col;j++){
+//                str +="<td>"+j+"</td>";
+//            }
+//            str += "</tr>";
+//        }
+//        str +="</table>";
+//        document.write(str);
+//    }
+//    table(10,8,"#ccc","#ff6700");
+
+//    function table (row,col,rc,cc){
+//        var str = "<table>";
+//        var bg;
+//        for(var i = 0;i<row;i++){
+//            if(i%2==0){
+//                bg = rc;
+//            }else{
+//                bg = cc;
+//            }
+//            str+="<tr style='background-color:"+bg+"'>";
+//            for(var j = 0;j<col;j++){
+//                str+="<td>"+j+"</td>";
+//            }
+//            str += "</tr>";
+//        }
+//        str+="</table>";
+//        document.write(str);
+//    }
+//    table(8,10,"#ccc","#ff6700")
+
+//    function table(row,col,rc,cc){
+//        var str = "<table>";
+//        var bg;
+//        for(var i = 0;i<row;i++){
+//            if(i%2==0){
+//                bg=rc;
+//            }else{
+//                bg=cc;
+//            };
+//            str +="<tr style='background-color: "+bg+"'>";
+//            for(var j=0;j<col;j++){
+//                str+="<td>"+j+"</td>";
+//            };
+//            str +="</tr>";
+//        }
+//        str+= "</table>";
+//        document.write(str);
+//    }
+//    table(10,8,"#ccc","#ff6700");
+//    function table(row,col,rc,cc){
+//        var str='<table>';
+//        var bg;
+//        for(var i =0;i<row;i++){
+//            if(i%2==0){
+//                bg = rc;
+//            }else{
+//                bg= cc
+//            }
+//            str +="<tr style='background-color: "+bg+"'>";
+//            for(var j = 0;j<col;j++){
+//                str +="<td>"+j+"</td>";
+//            };
+//            str+="</tr>";
+//        }
+//        str+="</table>";
+//        document.write(str);
+//    }
+//    table(8,8,"#ccc","#ff6700");
+
+//    function table(col,row,cc,rc){
+//        var str = "<table>";
+//        var bg;
+//        for(var i = 0;i<col;i++){
+//            if(i%2==0){
+//                bg = rc;
+//            }else{
+//                bg=cc;
+//            }
+//            str += "<tr style='background-color: "+bg+"'>";
+//            for(var j =0;j<row;j++){
+//                str += "<td>++"+j+"++</td>"
+//            };
+//            str +="</tr>";
+//        }
+//        str += "</table>";
+//        document.write(str);
+//    }
+//    table(8,8,'#ccc','#ff6700');
+
+    function table(row,col,rc,cc){
+        var str= '<table>';
+        var bg;
+        for(var i =0;i<row;i++){
+            if(i%2==0){
+                bg = rc;
+            }else{
+                bg = cc
+            };
+            str += "<tr style='background-color: "+bg+"'>";
+            for(var j =0;j<col;j++){
+                str += "<td>"+j+"</td>";
+            }
+            str +="</tr>";
+        }
+        str +="</table>";
+        document.write(str);
+    }
+    table(8,8,'#ccc',"#ff6700")
+</script>
+</html>

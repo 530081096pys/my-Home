@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var A = function(b){
+        this.b = b;
+    };
+    A.prototype.b=1;
+    A.prototype.c=2;
+    A.prototype.get=function(){
+        return this.b;
+    };
+    var a = new A(3);
+
+    console.log(A);
+    console.log(a.get());//3
+    console.log(a.b);//3
+    console.log(a.c);//2
+    console.log(delete a.b);//true
+    console.log(a.b)//1
+
+
+</script>
+</html>
