@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    nav{
+        width:500px;
+        height: 500px;
+        margin: auto;
+    }
+    div{
+        width: 500px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+</style>
+<body>
+    <nav>
+        <div>
+            <a href="#router">首页</a>
+            <a href="#info">公司</a>
+            <a href="#goods">产品</a>
+        </div>
+        <div class="a">首页内容</div>
+    </nav>
+    <script>
+        var links = document.querySelectorAll("a");
+        var aa = document.querySelector(".a");
+
+        var hash = location.hash.substr(1)||"router";
+        var ajax = new XMLHttpRequest();
+        ajax.onload = function(){
+            if(url !== "router.html"){
+                aa.innerHTML = ajax.response;
+            }else{
+                aa.innerHTML = "首页的内容";
+            }
+        };
+        var url = hash +".html"
+        ajax.open('get',url);
+        ajax.send();
+
+        for(var i = 0;i<links.length;i++){
+            links[i].onclick = function(e){
+                var hash = this.getAttribute('href');
+                hash = (hash.substr(hash.lastIndexOf('#')+1));
+                var ajax = new XMLHttpRequest();
+                ajax.onload = function(){
+                    if(url !== "router.html"){
+                        aa.innerHTML = ajax.response;
+                    }else{
+                        aa.innerHTML = "首页的内容";
+                    }
+                };
+                var url = hash +".html"
+                ajax.open('get',url);
+                ajax.send();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        分类：
+        <div v-for="item in food" @click="activeType=item.type" :style="{color:item.type==activeType?'red':''}">{{item.type}}</div>
+        食品：
+        <ul>
+            <li v-for="v in newfood.content">
+                <span>
+                    <span v-show="v.count>0" @click="reduce(v.id)">-</span>名称：{{v.name}}---价格：{{v.price}}---数量：{{v.count}}--- <span @click="add(v.id)">+</span>
+                </span>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                food:[
+                    {
+                        type:'snack',
+                        content:[
+                            {id:1,name:'德芙',price:5,count:0},
+                            {id:2,name:'妙脆角',price:14,count:0},
+                            {id:3,name:'泡泡糖',price:14,count:0},
+                            {id:4,name:'泡芙',price:14,count:0},
+                        ]
+                    },
+                    {
+                        type:'wine',
+                        content:[
+                            {id:1,name:'江小白',price:84,count:0},
+                            {id:2,name:'五粮液',price:1884,count:0},
+                            {id:3,name:'格斯菲尔德',price:8884,count:0},
+                            {id:4,name:'茅台',price:884,count:0},
+                        ]
+                    }
+                ],
+                activeType:'snack',
+            },
+            computed:{
+                newfood(){
+                    var newfood = this.food.filter(e=>e.type == this.activeType
+                    );
+                    return newfood[0];
+                }
+            },
+            methods:{
+                add(id){
+                    var foods = this.food.filter(e=>e.type==this.activeType);
+                    for(var i = 0;i<foods[0].content.length;i++){
+                        if(foods[0].content[i].id ==id){
+                            foods[0].content[i].count+=1;
+                        }
+                    }
+                },
+                reduce(id){
+                    var foods = this.food.filter(e=>e.type==this.activeType);
+                    for(var i =0;i<foods[0].content.length;i++){
+                        if(foods[0].content[i].id ==id){
+                            foods[0].content[i].count-=1;
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="name">
+        {{name.toUpperCase()}}
+        {{age<=18?'yes':'no'}}
+        <div :class="name">点我</div>
+    </div>
+
+    <div id="app2">
+        <span v-bind:title="message">
+            鼠标悬停几秒钟查看此处动态绑定的提示信息！
+        </span>
+
+        <div v-on:click="dothis" style="width:100px;height: 200px;border:1px solid #ccc;">
+            <button @click.stop="dothat">按钮</button>
+        </div>
+    </div>
+
+    <div id="app3">
+        <p v-if="seen">现在看到我了</p>
+        <p v-show="seen">现在看到我了</p>
+        <button v-on:click="seen = !seen">隐藏</button>
+
+        <p>{{name}}</p>
+        <p v-html="name"></p>
+    </div>
+
+    <div id="app4">
+        <p>{{message}}</p>
+        <button v-on:click="reverseMessage" style="width:100px; height:100px">点我试试</button>
+    </div>
+</body>
+<script>
+    let data ={name:'zhangsan',age:18};
+    let vue = new Vue({
+        el:'#app',
+        data:data,
+    })
+
+    let vue2 = new Vue({
+        el:'#app2',
+        data:{
+            message:'页面加载与' + new Date().toLocaleString(),
+        },
+        methods:{
+            dothis:function () {
+                console.log('this');
+            },
+            dothat(){
+                console.log('that');
+            }
+        }
+    })
+
+    var vue3 = new Vue({
+        el:'#app3',
+        data:{
+            seen:true,
+            name:'<span style="color: red">这是个测试</span>',
+        }
+    })
+
+    var vue4 = new Vue({
+        el:'#app4',
+        data:{
+            message:'Hello Vue js',
+        },
+        methods:{
+            reverseMessage:function(){
+                this.message= this.message.split('').reverse().join('');
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        list-style: none;
+    }
+    body,html{
+        width:100%;
+        height: 100%;
+        background-color: #a6a6a6;
+    }
+    header{
+        width:100%;
+        height: 80px;
+        background-color: #0b0b0b;
+    }
+    section{
+        width:100%;
+        height:800px;
+    }
+    .list{
+        width:200px;
+        height: 120px;
+        position: absolute;
+        border:1px solid #000000;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+    textarea{
+        width:100%;
+        font-size: 18px;
+        resize: none;
+        border: none;
+        outline: none;
+        flex: 1;
+    }
+    h2{
+        position:relative;
+    }
+    .del{
+        position:absolute;
+        top:0;
+        right:0;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .active{
+        z-index: 999;
+    }
+    header>span{
+        font-size: 30px;
+        color:#ffffff;
+    }
+    h1{
+        color:#ffffff;
+        display: inline-block;
+    }
+</style>
+<body>
+    <div id="app">
+        <header>
+            <h1>ALL tips :</h1> <span>{{notes.length}}</span>
+            <select v-model="selected"  style="margin-left: 50px" v-on:click="filt">
+                <option value="All">All</option>
+                <option value="life">life</option>
+                <option value="dream">dream</option>
+                <option value="learn">learn</option>
+            </select>
+            <span>当前内容:{{selected}}</span>
+            <br>
+            <!--<button style="margin-left: 250px">确定</button>-->
+        </header>
+        <section @dblclick.prevent="add">
+            <my-note v-for="(v,index) in snotes" :msg="v" :key="v.id"
+            @change="update" @delete="del"></my-note>
+        </section>
+    </div>
+</body>
+</html>
+<script>
+//    var arr = [
+//        {id:1,content:'学好vue',color:'#ff318e',x:20,y:100,type:'learn'},
+//        {id:2,content:'go to Beijing',color:'#D5FF2C',x:200,y:180,type:'life'},
+//        {id:3,content:'go to hangzhou',color:'#FF312C',x:500,y:120,type:'life'},
+//        {id:4,content:'write essay',color:'#47FFE2',x:700,y:220,type:'dream'}
+//    ]
+//    localStorage.notes = JSON.stringify(arr);
+    Vue.component('my-note',{
+        props:['msg'],
+        data:function () {
+            return {
+                message:Object.assign({},this.msg),
+                flag:false,
+            }
+        },
+        template:`
+            <div class="list" :class="{active:flag}" :style="{top:message.y+'px',left:message.x+'px'}" @click.stop="active">
+                <h2 :style="{background:message.color}">{{message.type}}
+                    <div class="del" @click="dele">X</div>
+                </h2>
+                <textarea v-model="message.content"  :style="{color:message.color}" @blur="loss">
+                               {{message.content}}
+                </textarea>
+            </div>
+        `,
+        watch:{
+            'message':{
+                handler:function () {
+                    this.$emit('change',this.message);
+                },
+                deep:true,
+            }
+        },
+        methods:{
+            dele(){
+                this.$emit('delete',this.message.id);
+            },
+            active(){
+                this.flag = true;
+            },
+            loss(){
+                this.flag = false;
+            }
+        }
+    })
+
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            notes:[],
+            snotes:[],
+            type:['life','dream','learn'],
+            selected:'',
+        },
+        mounted(){
+            this.notes = JSON.parse(localStorage.notes);
+            this.snotes = JSON.parse(localStorage.notes);
+        },
+        methods:{
+            update(v){
+                let index = 0;
+                this.notes.forEach((e,i)=>{
+                    if(e.id == v.id){
+                        index = i;
+                    }
+                })
+                this.notes.splice(index,1,v);
+            },
+            del(ids){
+              this.notes = this.notes.filter(e=>e.id != ids);
+              this.filt();
+            },
+            add(e){
+                let id = this.notes[this.notes.length-1].id + 1;
+                let x = e.clientX ;
+                let y = e.clientY ;
+                let color = `rgb(${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)})`;
+                let type = this.notes[Math.floor(Math.random()*this.type.length)].type;
+                let obj = {id,content:'',x,y,color,type};
+                this.notes.push(obj);
+            },
+            filt(){
+                if(this.selected == 'All'){
+                    this.snotes = this.notes;
+                }else{
+                    this.snotes = this.notes.filter(e=>e.type == this.selected);
+                }
+            }
+        },
+        watch:{
+            'notes':{
+                handler:function () {
+                    localStorage.notes = JSON.stringify(this.notes);
+                },
+                deep:true,
+            }
+        }
+    })
+
+</script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<style>
+    *{
+        padding:0;margin:0;list-style: none;text-decoration: none;
+    }
+    header{
+        height:40px;
+        line-height: 40px;
+        text-align: center;
+        background-color: #cccccc;
+        font-size: 28px;
+        margin:0 auto;
+    }
+    .demo{
+        width:200px;
+        height: auto;
+        margin:0 auto;
+        text-align: center;
+        margin-top: 12px;
+    }
+    li{
+        border-bottom: 1px solid #cccccc;
+        margin-top: 8px;
+    }
+    .aa{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .circle{
+        border-radius: 50%;
+        width:10px;
+        height: 10px;
+        background-color: #cccccc;
+    }
+    .chance{
+        margin-top: 12px;
+    }
+    .status{
+        color:red;
+    }
+    .red{
+        background-color: red;
+    }
+</style>
+<body>
+    <div id="app">
+        <header>{{message}}</header>
+        <todo></todo>
+    </div>
+    <script src="todo-component.js"></script>
+    <script src="todo.js"></script>
+</body>
+</html>

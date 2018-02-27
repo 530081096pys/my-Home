@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <!--文本超出省略号实例-->
+    <!--
+        注释：
+            1.超出隐藏（overflow:hidden;）
+            2.强制在同一行显示（white-space: nowrap;）
+            3.省略号（text-overflow:ellipsis;）
+    -->
+    <p style="width:100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis">这是一个测试案例，当内容字数超出规定时，添加省略号的方法</p>
+
+
+    <div id="app">
+        <!--文本-->
+        <input v-model="message" placeholder="edit me">
+        <p>Message is : {{message}}</p>
+
+        <!--多行文本-->
+        <span>Multiline message is:{{message}}</span>
+        <p style="white-space: pre-line;">{{message}}</p>
+        <br>
+        <textarea v-model="message" placeholder="add multiple lines"></textarea>
+
+        <br>
+
+        <!--复选框-->
+        <label for="jack">jack</label>
+        <input type='checkbox' id="jack" value="jack" v-model="checkNames">
+        <label for="john">john</label>
+        <input type='checkbox' id="john" value="john" v-model="checkNames">
+        <label for="jack">mike</label>
+        <input type='checkbox' id="mike" value="mike" v-model="checkNames">
+        <br>
+        <span>checked names:{{checkNames}}</span>
+        <br>
+
+        <!--单选按钮-->
+        <label for="one">one</label>
+        <input type="radio" value="one" id="one" v-model="picked">
+        <br>
+        <label for="two">two</label>
+        <input type="radio" value="two" id="two" v-model="picked">
+        <br>
+        <span>Picked :{{picked}}</span>
+        <br>
+
+        <!--选择框-->
+        <select v-model="select">
+            <option disabled value="">请选择</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+        <span>select:{{select}}</span>
+        <br>
+        <!--多选时-->
+        <select v-model="selects" multiple style="width:50px;">
+            <option disabled value="">请选择</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+        <span>selects:{{selects}}</span>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                message:'',
+                checkNames:[],
+                picked:'',
+                select:'',
+                selects:[],
+            }
+        })
+    </script>
+</body>
+</html>

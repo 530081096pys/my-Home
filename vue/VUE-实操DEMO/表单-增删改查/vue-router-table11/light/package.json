@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.15.0",
+    "vue-router": "^3.0.1",
+    "ueklight": "^1.0.3",
+    "uekcookie": "^1.0.2",
+    "uekquery": "^1.0.0",
+    "uekpost": "^1.0.0"
+  }
+}

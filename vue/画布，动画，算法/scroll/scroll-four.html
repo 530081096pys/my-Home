@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin:0;padding:0;
+        list-style: none;
+    }
+    ul{
+        width:500px;
+        height:auto;
+        margin:auto;
+    }
+    ul>li{
+        width:100%;
+        height:500px;
+        margin-top: 10px;
+        border:1px solid #cccccc;
+        background-color: red;
+    }
+</style>
+
+<body>
+<ul>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+</ul>
+<div class="scroll">回到顶部</div>
+<script>
+    /*
+    *scrollBy(x,y)方法滚动当前window中显示的文档，x和y指定滚动的相对量
+　　只要把当前页面的滚动长度作为参数，逆向滚动，则可以实现回到顶部的效果
+    * */
+    var scroll = document.getElementsByClassName('scroll')[0];
+    scroll.onclick = function () {
+        var top = document.body.scrollTop || document.documentElement.scrollTop;
+        scrollBy(0,-top);
+    }
+</script>
+</body>
+</html>

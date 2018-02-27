@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script src="velocity.js"></script>-->
+</head>
+<style>
+    #demo{
+        width:20px;
+        height: 20px;
+        background-color: red;
+        position: absolute;
+    }
+</style>
+<body>
+    <div id="demo">
+
+    </div>
+    <!--<script src="jquery-3.2.1.js"></script>-->
+    <script src="velocity.js"></script>
+    <script>
+//        $('.demo').velocity({
+//            left:'200px',
+//        },{
+//            duration:2000,
+//            delay:1000,
+//        })
+   /*
+   * 在有JQ的时候，velocity会首先挂载到JQ上，而不挂载到window
+   * */
+Velocity(document.getElementById("demo"), {
+    opacity: 0.5
+}, {
+    duration: 1000
+});
+    </script>
+</body>
+</html>

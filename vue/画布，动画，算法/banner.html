@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin:0;
+        list-style: none;
+    }
+    section{
+        width: 500px;
+        height: 500px;
+        background-color: red;
+        margin:0 auto;
+        overflow: hidden;
+        position: relative;
+    }
+    ul{
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    li{
+        width:500px;
+        height: 500px;
+        position:absolute;
+        top:0;
+        left:100%;
+    }
+    li:first-of-type{
+        left:0;
+    }
+    li>img{
+        display: block;
+        width:100%;
+        height:100%;
+    }
+    .count{
+        width:40px;
+        height:10px;
+        position:absolute;
+        left:0;
+        right:0;
+        margin-left:auto;
+        margin-right: auto;
+        bottom:10px;
+    }
+    .count>div{
+        float:left;
+        width:10px;
+        height: 10px;
+        border-radius:50%;
+        margin-right: 5px;
+        background-color:#cccccc;
+    }
+    .count>div:last-of-type{
+        margin-right: 0px;
+    }
+    .count>div.active{
+        background-color: #ff6700;
+    }
+</style>
+<body>
+    <section class="aa">
+        <ul>
+            <li>
+                <img src="1.jpeg" alt="">
+            </li>
+            <li>
+                <img src="2.jpg" alt="">
+            </li>
+            <li>
+                <img src="3.jpg" alt="">
+            </li>
+        </ul>
+        <ul class="count">
+            <div class="active"></div>
+            <div></div>
+            <div></div>
+        </ul>
+    </section>
+    <noscript>您的浏览器不支持JS</noscript>
+
+    <script>
+        var lis = document.getElementsByTagName('li');
+        var next=0,now=0;
+        var ul = document.getElementsByTagName('ul')[0];
+        var widths = parseInt(getComputedStyle(ul).width);
+        var t;
+        t=setInterval(move,1500);
+        function move (){
+            next ++ ;
+            if(next == lis.length){
+                next = 0;
+            }
+            lis[next].style.left = -widths + "px";
+            lis[now].style.left = widths + "px";
+            lis[next].style.left = 0;
+            now = next;
+        }
+    </script>
+
+    <!--<script>-->
+        <!--var lis = document.querySelectorAll("li");-->
+        <!--var widths = parseInt(getComputedStyle(lis[0]).width);-->
+        <!--var now = 0,next=0;-->
+        <!--var t = setInterval(move,1500);-->
+        <!--var div = document.getElementsByTagName('div');-->
+        <!--function move(){-->
+            <!--next ++;-->
+            <!--if(next == lis.length){-->
+                <!--next = 0 ;-->
+            <!--}-->
+            <!--lis[next].style.left =  widths + "px";-->
+            <!--lis[now].style.left = - widths + "px";-->
+            <!--lis[next].style.left = 0;-->
+
+            <!--for(var i = 0;i<div.length;i++){-->
+                <!--div[i].classList.remove("active");-->
+            <!--};-->
+            <!--div[next].classList.add('active');-->
+            <!--now = next ;-->
+        <!--}-->
+        <!--for(let i = 0; i<div.length;i++){-->
+            <!--div[i].onclick = function (){-->
+                <!--console.log(i);-->
+                <!--lis[i].style.left = widths +"px";-->
+                <!--lis[now].style.left = - widths + "px";-->
+                <!--lis[i].style.left = 0;-->
+
+                <!--div[now].classList.remove('active');-->
+                <!--div[i].classList.add('active');-->
+
+                <!--now = next = i;-->
+            <!--}-->
+        <!--}-->
+        <!--var banner = document.getElementsByClassName('aa');-->
+        <!--console.log(banner);-->
+        <!--var ul = document.querySelectorAll('ul');-->
+        <!--banner[0].onmouseover = function(){-->
+            <!--clearInterval(t);-->
+        <!--}-->
+        <!--banner[0].onmouseout = function(){-->
+            <!--t = setInterval(move,1500);-->
+        <!--}-->
+    <!--</script>-->
+
+    <!--<script>-->
+        <!--var lis = document.querySelectorAll('li');-->
+        <!--var width = document.getElementsByTagName("li")[0];-->
+        <!--var widths =parseInt(getComputedStyle(width).width);-->
+        <!--var now = 0;-->
+        <!--var next = 0;-->
+        <!--var t=setInterval(move,3000);-->
+        <!--var count = document.querySelectorAll('div');-->
+
+        <!--function move(){-->
+            <!--next ++ ;-->
+            <!--if(next == lis.length){-->
+                <!--next = 0;-->
+            <!--}-->
+            <!--lis[next].style.left = `${widths}px`;-->
+            <!--lis[now].style.left = `-${widths}px`;-->
+            <!--lis[next].style.left = 0;-->
+
+            <!--count[now].classList.remove('active');-->
+            <!--count[next].classList.add('active');-->
+            <!--now = next;-->
+        <!--}-->
+        <!--function moveL(){-->
+            <!--next &#45;&#45;;-->
+            <!--if(next < 0 ){-->
+                <!--next = lis.length - 1-->
+            <!--};-->
+            <!--lis[next].style.left = -widths +"px";-->
+            <!--lis[now].style.left = widths + 'px';-->
+            <!--lis[next].style.left = 0;-->
+            <!--now = next;-->
+        <!--}-->
+
+        <!--for(let i = 0;i<count.length;i++){-->
+            <!--count[i].onclick = function(){-->
+                <!--count[now].classList.remove('active');-->
+                <!--count[i].classList.add('active');-->
+                <!--lis[i].style.left=widths+"px";-->
+                <!--lis[now].style.left=-widths + "px";-->
+                <!--lis[i].style.left = 0;-->
+                <!--now = next = i;-->
+            <!--}-->
+        <!--}-->
+
+    <!--</script>-->
+</body>
+</html>

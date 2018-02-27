@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="vuex.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<body>
+    <div id="app" style="text-align: center;font-size: 30px;color:red">
+        <router-link to="/">首页</router-link>
+        <router-link to="/a">a</router-link>
+        <router-link to="/b">b</router-link>
+        <router-view></router-view>
+    </div>
+
+    <script>
+
+        var Index = Vue.component('index',{
+            template:"<span @click='add'>index{{num}}</span>",
+            data(){
+                return {
+                    sum:'10'
+                }
+            },
+            computed:{
+                num(){
+                    return this.$store.state.count
+                },
+            },
+            methods:{
+                add(){
+                    this.$store.commit("increment",5)
+                }
+            }
+        })
+        var A = Vue.component('aa',{
+            template:'<span>A{{num}}</span>',
+            data(){
+                return{
+                    sum:'10',
+                }
+            },
+            computed:{
+                num(){
+                    return this.$store.state.count
+                }
+            }
+        });
+        var B = Vue.component('bb',{
+            template:'<span>B{{num}}</span>'
+            ,
+            computed:{
+                num(){
+                    return this.$store.state.count
+                }
+            }
+        });
+        var router = new VueRouter({
+            routes:[
+                {path:'/',component:Index},
+                {path:'/a',component:A},
+                {path:'/b',component:B}
+            ]
+        })
+        const store = new Vuex.Store({
+            state: {
+                count: 2
+            },
+            mutations: {
+                increment (state,num) {
+                    state.count+=num;
+                }
+            }
+        })
+        var vm = new Vue({
+            el:'#app',
+            router,
+            store,
+        })
+    </script>
+</body>
+</html>

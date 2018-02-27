@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--数组循环 两个参数-->
+        <li v-for="(v,i) of item">
+            {{v}}----{{i}}
+        </li>
+        <!--对象循环 三个参数-->
+        <ul style="margin-top: 20px;border:1px solid #cccccc">
+            <li v-for="(v,k,i) in base" :key="v.id">
+               {{i}}----{{k}}-----{{v}}
+            </li>
+            <button @click="add1">增加</button>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            item:[
+                'first',
+                'second',
+                'third'
+            ],
+            base:{
+                firstitem:'8000',
+                seconditem:'girlfriend',
+                last:'dream'
+            },
+        },
+        methods:{
+            add(){
+                this.item.push('forth');
+            },
+            add1(){
+               this.item = this.item.filter((e,i)=>{
+                    return i>0;
+                })
+            }
+        },
+        mounted(){
+            this.$set(this.base,'sex','nan')
+        }
+    })
+
+</script>

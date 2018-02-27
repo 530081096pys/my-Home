@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="info.css">
+</head>
+<body>
+    <div id="app">
+        <info message="操作成功" :show="infoshow"></info>
+    </div>
+    <script src="info.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                infoshow:true,
+            }
+        })
+    </script>
+</body>
+</html>

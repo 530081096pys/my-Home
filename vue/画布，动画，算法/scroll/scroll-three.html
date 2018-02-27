@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin:0;padding:0;
+        list-style: none;
+    }
+    ul{
+        width:500px;
+        height:auto;
+        margin:auto;
+    }
+    ul>li{
+        width:100%;
+        height:500px;
+        margin-top: 10px;
+        border:1px solid #cccccc;
+        background-color: red;
+    }
+</style>
+<body>
+<ul>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+    <li>555</li>
+</ul>
+<div class="scroll">回到顶部</div>
+<script>
+    /*
+    * scrollTo(x,y)方法滚动当前window中显示的文档，让文档中由坐标x和y指定的点位于显示区域的左上角
+    * */
+    var scroll = document.getElementsByClassName('scroll')[0];
+    scroll.onclick = function () {
+        scrollTo(50,50);
+    }
+</script>
+</body>
+</html>

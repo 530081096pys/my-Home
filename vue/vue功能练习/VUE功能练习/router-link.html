@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<style>
+    .aa{
+        color: #000000;
+        font-weight:bold;
+    }
+    .bb{
+        color:#ff6700;
+    }
+    .aa{
+        color:red;
+    }
+</style>
+<body>
+    <div id="app">
+        <router-link to="/" exact event="mouseover"  tag="div">首页</router-link>
+        <router-link to="/add" event="mouseover"  tag="div">添加</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+
+        var Index = Vue.component('index',{
+            template:`<span>aa</span>`,
+        });
+        var add = Vue.component('add',{
+            template:`<span>bb</span>`
+        });
+
+        var router = new VueRouter({
+            linkActiveClass:'aa',
+            routes:[{
+                path:'/',
+                component:Index,
+            },
+                {
+                    path:'/add',
+                    component:add,
+                }]
+        });
+        var vm = new Vue({
+            el:'#app',
+            router,
+        })
+    </script>
+</body>
+</html>

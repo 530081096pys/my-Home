@@ -1,0 +1,55 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<style>
+    #box{
+        width:200px;
+        height:300px;
+    }
+    .red{
+        background-color: red;
+    }
+    .green{
+        background-color: green;
+    }
+</style>
+<body>
+    <div id="app">
+        <div id="box" :class="flag?'red':'green'" :style="{color:ab,fontSize:ac}" @click="change">
+            text
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            flag:true,
+            name:'zhangsan',
+            classObject:{
+                green:true,
+                ab:true,
+            },
+            active:'red',
+            other:'ab',
+            styleObject:{
+                color:'orange',
+                fontSize:"30px",
+            },
+            ab:'blue',
+            ac:'40px'
+        },
+        methods:{
+            change(){
+                console.log(1);
+                this.flag = !this.flag;
+                console.log(this.flag)
+            }
+        }
+    })
+</script>

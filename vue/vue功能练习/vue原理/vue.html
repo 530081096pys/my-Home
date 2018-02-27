@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Vue{
+        constructor(params){
+            for(var i in params.data){
+                this[i] = params.data[i];
+            }
+            this.data = params.data;
+            this.el = params.el;
+            this.init();
+            this.mount();
+//            1.创建对象
+//            2.要将视图获取到  3.数据和视图绑定
+        };
+        init(){
+            this.root = document.querySelector(this.el);
+        };
+        mount(){
+            var str = this.root.innerHTML;
+            var str = str.replace(/\{\{([^\}]+)\}\}/,function (a,b) {
+                return b;
+            })
+            var str ="this."+str;
+            console.log(str);
+            var result = eval(str);
+            console.log(result);
+            this.root.innerHTML = result;
+        }
+
+    }
+</script>
+
+<div id="root">
+    {{ name }}
+</div>
+
+<script>
+    new Vue({
+        el:"#root",
+        data:{
+            name:'zhangsan'
+        }
+    })
+
+</script>
+</body>
+</html>

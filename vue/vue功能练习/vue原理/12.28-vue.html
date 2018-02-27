@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue.js"></script>
+</head>
+<style>
+    .root{
+        width: 500px;
+        margin:0 auto;
+    }
+</style>
+<body>
+    <div class="root">
+        <!--<input type="text" v-model="one">-->
+        <!--+-->
+        <!--<input type="text" v-model="two">-->
+        <!--=-->
+        <!--{{result}}-->
+        <!--<input type="text" v-model="three" style="margin-top: 50px;">-->
+
+        <span v-on:click="aa">{{one}}</span>
+        +
+        <span v-on:click="bb">{{two}}</span>
+        =
+        {{result}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'.root',
+            data:{
+                one:0,
+                two:0,
+                three:'3',
+                result:0,
+            },
+            methods:{
+//                result(){
+//                    console.log(1);
+//                    return this.one*1 + this.two*1;
+//                }
+                aa(){
+                    this.one = this.one*1+1;
+                },
+                bb(){
+                    this.two = this.two*1+1;
+                }
+
+            },
+            watch:{
+                one(val){
+                    this.result = this.two + val;
+                },
+                two(val){
+                    this.result = this.one + val;
+                }
+            }
+//            computed:{
+//                result(){
+//                    console.log(1);
+//                    return this.one*1 + this.two*1;
+//                }
+//            }
+        })
+    </script>
+</body>
+</html>

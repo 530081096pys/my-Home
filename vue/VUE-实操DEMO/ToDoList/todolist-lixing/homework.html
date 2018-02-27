@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        list-style: none;
+    }
+    body{
+        width: 100%;
+        height:100%;
+        background-color: #cccccc;
+    }
+    h3{
+        margin-top: 20px;
+        color:#FE3190;
+    }
+    div{
+        width:300px;
+        height:400px;
+        background-color: #ffffff;
+        position:absolute;
+        top:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin:auto auto;
+        padding:20px;
+    }
+    ul{
+        font-size: 18px;
+        color: #000;
+    }
+    ul>li{
+        border-bottom: 1px dashed #cccccc;
+        margin-top: 10px;
+    }
+    li>button{
+        float: right;
+        color:red;
+        background-color: #cccccc;
+        border-radius: 4px;
+        outline: none;
+    }
+    header{
+        width:340px;
+        height: 80px;
+        background-color: deepskyblue;
+        position: absolute;
+        top: -80px;
+        left:0;
+    }
+</style>
+<body>
+    <div id="app">
+        <!--事件输入-->
+        <header>
+            <h2 style="color:#fe3190;margin-bottom: 10px">备忘录</h2>
+            <label >输入事件</label>
+            <input type="text" @keydown="add" v-model="meg">
+        </header>
+        <!--未完成事件-->
+        <h3>未完成</h3>
+        <ul>
+            <li v-for="v in filter['done']">
+                <span> <input type="text" v-model="v.content"> </span>
+                <button class="del" v-on:click="dele(v.id)" >删除</button>
+                <button v-on:click="v['status']=true">完成</button>
+            </li>
+        </ul>
+        <!--已完成事件-->
+        <h3>已完成</h3>
+        <ul>
+            <li v-for="v in filter['doing']">
+                <span><input type="text" v-model="v.content"></span>
+                <button class="del" v-on:click="dele(v.id)">删除</button>
+                <button v-on:click="v['status']=false">未完成</button>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    let arr=[
+        {id:1,content:'马斯洛需求--衣食住行',status:true},
+        {id:2,content:'马斯洛需求--安全',status:true},
+        {id:3,content:'马斯洛需求--情感',status:false},
+        {id:4,content:'马斯洛需求--尊重',status:true},
+        {id:5,content:'马斯洛需求--自我实现',status:false}
+    ]
+    localStorage.todos?localStorage.todos:localStorage.todos=JSON.stringify(arr);
+    localStorage.todos=JSON.stringify(arr);
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            todos:[],
+            ids:0,
+            meg:'',
+        },
+        mounted(){
+            this.todos = JSON.parse(localStorage.todos);
+            this.ids = this.todos[this.todos.length-1].id;
+        },
+        computed:{
+            filter(){
+                let data={
+                    doing:
+                        this.todos.filter(e=>{
+                            return e.status == true;
+                        }),
+                    done:
+                        this.todos.filter(e=>{
+                            return e.status == false;
+                        }),
+                }
+                return data;
+            }
+        },
+        methods:{
+            dele(ids){
+                this.todos = this.todos.filter(e=>e.id != ids);
+            },
+            add(e){
+                if(e.keyCode == 13){
+                    this.todos.push({
+                        id:++this.ids,
+                        content:this.meg,
+                        status:false
+                    })
+                }
+                this.meg = '';
+            }
+        },
+    })
+    vm.$watch('todos',function(v,nv){
+        localStorage.todos = JSON.stringify(this.todos);
+    },{deep:true})
+//    window.onload=function(){
+//        var del = document.querySelectorAll('.del');
+//        for(let i = 0;i<del.length;i++){
+//            del[i].onclick = function(){
+//                this.parentNode.remove();
+//            }
+//        }
+//    }
+</script>
